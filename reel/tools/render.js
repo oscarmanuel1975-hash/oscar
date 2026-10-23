@@ -1,5 +1,5 @@
 const { chromium } = require('playwright'); const fs=require('fs');
-const FPS=30, DUR=31.5, OUT=process.argv[2], WORKERS=4;
+const FPS=30, DUR=33, OUT=process.argv[2], WORKERS=4;
 (async()=>{
   fs.mkdirSync(OUT,{recursive:true});
   const b=await chromium.launch(); const total=FPS*DUR;

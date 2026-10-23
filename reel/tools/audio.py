@@ -1,5 +1,5 @@
 import numpy as np, wave
-sr=44100; D=31.5; N=int(sr*D)
+sr=44100; D=33.0; N=int(sr*D)
 L=np.zeros(N); Rr=np.zeros(N)
 def place(sig,t0,pan=0.0,g=1.0):
     i=int(t0*sr)
@@ -82,11 +82,11 @@ for m in [48,52,55]: place(np.sin(2*np.pi*midi(m)*tt)*env*.05,23.4)
 place(np.sin(2*np.pi*midi(36)*tt)*env*.07,23.4)
 # sleigh: dense bells panning left->right, whoosh, sponsor chime
 tm=27.2
-while tm<30.9:
-    place(shaker(.11,.07),tm,pan=-.8+1.6*(tm-27.0)/3.9); tm+=0.11
-place(whoosh(3.2,.10),27.0,pan=0)
+while tm<31.3:
+    place(shaker(.11,.07),tm,pan=-.8+1.6*(tm-27.0)/4.3); tm+=0.11
+place(whoosh(4.2,.10),27.0,pan=0)
 for n in ['C6','E6','G6','C7']: place(tone(mf(n),1.8,*BL,amp=.2),24.0)
-for k,n in enumerate(['G5','C6','E6','G6','C7']): place(tone(mf(n),2.0,*BL,amp=.14),30.1+k*.12,pan=.3)
+for k,n in enumerate(['G5','C6','E6','G6','C7']): place(tone(mf(n),2.0,*BL,amp=.14),31.0+k*.12,pan=.3)
 # reverb-ish
 def rev(x):
     y=x.copy()
