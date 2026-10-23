@@ -1,5 +1,5 @@
 import numpy as np, wave
-sr=44100; D=24.0; N=int(sr*D)
+sr=44100; D=31.5; N=int(sr*D)
 L=np.zeros(N); Rr=np.zeros(N)
 def place(sig,t0,pan=0.0,g=1.0):
     i=int(t0*sr)
@@ -73,6 +73,20 @@ for tm,n in zip([10.0,10.35,10.7,11.05],['C6','E6','G6','B6']): place(tone(mf(n)
 for n in ['C6','E6','G6','C7']: place(tone(mf(n),1.8,*BL,amp=.22),11.4)
 place(tone(mf('B6'),.9,*BL,amp=.3),14.2); place(tone(mf('E7'),1.6,*BL,amp=.26),14.3)   # cha-ching
 place(shaker(.5,.25),18.55)
+# second pass of the chorus under sponsor + sleigh scenes
+t=23.4
+for n,d in P1:
+    place(tone(mf(n),max(1.2,d*beat*1.2),*MB,amp=.30),t,pan=-.1); place(tone(mf(n)*2,0.9,*MB,amp=.07),t,pan=.15); t+=d*beat
+tt=np.arange(int(9.2*sr))/sr; env=np.minimum(1,tt/0.6)*np.clip((9.2-tt)/1.2,0,1)
+for m in [48,52,55]: place(np.sin(2*np.pi*midi(m)*tt)*env*.05,23.4)
+place(np.sin(2*np.pi*midi(36)*tt)*env*.07,23.4)
+# sleigh: dense bells panning left->right, whoosh, sponsor chime
+tm=27.2
+while tm<30.9:
+    place(shaker(.11,.07),tm,pan=-.8+1.6*(tm-27.0)/3.9); tm+=0.11
+place(whoosh(3.2,.10),27.0,pan=0)
+for n in ['C6','E6','G6','C7']: place(tone(mf(n),1.8,*BL,amp=.2),24.0)
+for k,n in enumerate(['G5','C6','E6','G6','C7']): place(tone(mf(n),2.0,*BL,amp=.14),30.1+k*.12,pan=.3)
 # reverb-ish
 def rev(x):
     y=x.copy()
