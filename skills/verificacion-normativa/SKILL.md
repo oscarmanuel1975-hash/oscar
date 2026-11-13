@@ -1,6 +1,6 @@
 ---
 name: verificacion-normativa
-description: Regla común de rigor para cualquier trabajo que cite o dependa de normas, jurisprudencia, convenios, plazos, tipos, cuantías o criterios administrativos españoles (BOE, DOG, EUR-Lex, AEPD, AEAT, Seguridad Social, CENDOJ del CGPJ, REGCON). Obliga a comprobar cada dato en la fuente oficial vigente antes de usarlo, a citarlo con referencia y fecha de consulta, a separar lo verificado de lo no verificado y a no usar fuentes no fiables. Actívala SIEMPRE que el usuario pida redactar, calcular, programar o informar sobre algo que dependa de una norma, un plazo, un porcentaje, una sanción, una sentencia o un convenio, aunque no pida expresamente "verifica". También cuando otra skill jurídica, laboral, fiscal o de gestoría necesite apoyarse en una fuente. Complementa a calculo-nominas-es, despido-objetivo-cartas, gestoria-integraciones-aapp, infografia-normativa-calvario y rgpd-proteccion-datos.
+description: Regla de rigor para todo proyecto de gestoría o asesoría que dependa de normas, plazos, tipos, bases de cotización, convenios, sentencias o criterios de la Administración (BOE, DOG, EUR-Lex, AEAT, Seguridad Social, REGCON, AEPD, CENDOJ del CGPJ). Obliga a comprobar cada dato en la fuente oficial vigente, a citarlo con referencia y fecha, a separar lo verificado de lo pendiente y a no usar fuentes no fiables. Actívala SIEMPRE que se redacte, calcule o programe algo de gestoría con base normativa (nóminas, despidos, presupuestos, infografías, impuestos, plazos, apps que apliquen tipos o fechas), aunque no se pida verificar. Complementa a calculo-nominas-es, despido-objetivo-cartas, gestoria-integraciones-aapp, infografia-normativa-calvario, presupuesto-cliente-gestoria y rgpd-proteccion-datos.
 ---
 
 # Verificación normativa con fuentes oficiales
@@ -24,6 +24,10 @@ Esta skill existe porque en trabajo jurídico, laboral y fiscal un dato inventad
 Valen: boletines oficiales (BOE, DOG, DOUE/EUR-Lex), webs de ministerios y organismos competentes (AEAT, Seguridad Social, Ministerio de Trabajo, AEPD, Xunta), la base de jurisprudencia del Consejo General del Poder Judicial (CENDOJ) y el registro de convenios (REGCON).
 
 No valen como base de un dato: blogs, foros, redes sociales, resúmenes de despachos o de software comercial, ni respuestas generadas por IA sin fuente. Pueden servir para saber qué buscar, pero el dato se toma de la fuente oficial. Tampoco uses imágenes o capturas de terceros como prueba de una norma.
+
+## En proyectos de gestoría
+
+El uso principal de esta skill es el despacho. Consulta `references/ambito-gestoria.md`: por cada área (fiscal, laboral y Seguridad Social, mercantil, protección de datos, administración gallega) indica qué datos normativos suelen hacer falta, qué fuente es la competente y qué errores se repiten. Si el proyecto es una aplicación, los valores normativos no se escriben en el código sino en una tabla configurable con fuente, vigencia y fecha de verificación, de modo que cada cálculo pueda mostrar de dónde sale el dato. Las skills propias del despacho siguen mandando en su proceso; esta aporta la comprobación.
 
 ## Acceso real a las fuentes
 

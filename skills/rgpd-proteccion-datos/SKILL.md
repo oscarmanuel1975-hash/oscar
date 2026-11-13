@@ -1,6 +1,6 @@
 ---
 name: rgpd-proteccion-datos
-description: Cumplimiento del RGPD (Reglamento UE 2016/679) y la LOPDGDD (LO 3/2018) en aplicaciones, documentos y procesos de una gestoría o asesoría que trata datos de clientes y trabajadores (DNI, IBAN, nóminas, bajas médicas, firmas, certificados, expedientes). Fija quién es responsable y quién encargado, revisa la seguridad de la app, la información al interesado, el registro de actividades, los contratos de encargado, la conservación y el bloqueo, las brechas y los derechos. Actívala SIEMPRE que se pida crear o revisar una app, base de datos, formulario, mandato, presupuesto o flujo que recoja, guarde o comparta datos personales, o se mencione RGPD, LOPD, AEPD, brecha, cláusula informativa, encargado del tratamiento, DPO o privacidad, aunque no se usen esas palabras. Úsala con equipo-desarrollo-software y apóyate en verificacion-normativa para citar artículos y plazos.
+description: Protección de datos (RGPD y LOPDGDD) para proyectos de gestoría y asesoría (aplicaciones, bases de datos, portales de clientes, presupuestos, mandatos y SEPA, nóminas, despidos, contabilidad, certificados digitales y apoderamientos). Fija quién es responsable y quién encargado del tratamiento, revisa la seguridad de la app, la información al interesado, el registro de actividades, los contratos de encargado, la conservación y el bloqueo, las brechas y los derechos. Actívala SIEMPRE que un proyecto de gestoría o despacho recoja, guarde, envíe o comparta datos de clientes, trabajadores o terceros, o se mencione RGPD, LOPD, AEPD, brecha, cláusula informativa, encargado, DPO o privacidad, aunque no se usen esas palabras. Úsala con equipo-desarrollo-software y gestoria-integraciones-aapp, y apóyate en verificacion-normativa para citar.
 ---
 
 # RGPD y protección de datos en la gestoría
@@ -10,6 +10,10 @@ Una gestoría guarda justo los datos que más daño hacen si se filtran: identid
 Todo dato normativo (artículo, plazo, cuantía) se comprueba siguiendo `verificacion-normativa`. En `references/fuentes-y-estado.md` está lo que ya se verificó en el BOE y lo que queda pendiente de contrastar; no cites como verificado nada que no esté ahí o que no hayas leído tú en la fuente durante el trabajo.
 
 ## Flujo de trabajo
+
+### 0. Parte del flujo de gestoría
+
+Esta skill está pensada para despachos. Antes de analizar nada, identifica en `references/flujos-gestoria.md` a qué flujo corresponde el proyecto (presupuesto, mandato y SEPA, nóminas, despidos, contabilidad, certificados y apoderamientos, portal de clientes, correo, personal propio, prevención del blanqueo). Esa tabla da el rol, los datos y los puntos de control de partida. Si el flujo ya tiene su skill (`calculo-nominas-es`, `despido-objetivo-cartas`, `presupuesto-cliente-gestoria`, `mandato-sepa-cliente-gestoria`, `gestoria-integraciones-aapp`), no repitas su lógica: añade la capa de protección de datos y respeta lo que esas skills ya decidan, como guardar las plantillas del mandato y del SEPA solo en local.
 
 ### 1. Fija los roles antes de nada
 
