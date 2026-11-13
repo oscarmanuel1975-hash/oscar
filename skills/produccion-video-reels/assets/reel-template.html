@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Plantilla de reel</title>
+<style>
+  :root{ --fondo:#0b1230; --acento:#f6c453; --texto:#ffffff; }
+  *{box-sizing:border-box}
+  html,body{margin:0;background:#000}
+  body{width:1080px;height:1920px;overflow:hidden;font-family:'Inter',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+  #stage{position:relative;width:1080px;height:1920px;overflow:hidden;background:var(--fondo)}
+  .abs{position:absolute}
+  /* Texto dentro de la zona segura: margen lateral 90px, evitando franja superior e inferior que tapan las apps */
+  .escena{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;
+          padding:260px 90px 460px;text-align:center;opacity:0;color:var(--texto)}
+  h1{font-size:120px;line-height:1.05;margin:0 0 30px;font-weight:900;letter-spacing:-2px}
+  p{font-size:54px;line-height:1.25;margin:0;font-weight:600;color:var(--acento)}
+</style>
+</head>
+<body>
+<div id="stage">
+  <section class="escena" id="e1"><h1>Título del reel</h1><p>Frase de apoyo corta</p></section>
+  <section class="escena" id="e2"><h1>Segunda escena</h1><p>Un solo mensaje por escena</p></section>
+  <section class="escena" id="e3"><h1>Llamada a la acción</h1><p>Dónde, cuándo, cómo</p></section>
+</div>
+<script>
+// Duración y fps que lee render_frames.js si no se le pasan por parámetro.
+window.REEL = { fps: 30, duration: 9 };
+
+// Funciones de ayuda. Todas son puras: dado t devuelven siempre lo mismo.
+const clamp=(x,a=0,b=1)=>Math.min(b,Math.max(a,x));
+const easeOut=x=>1-Math.pow(1-clamp(x),3);
+const easeInOut=x=>{x=clamp(x);return x<.5?4*x*x*x:1-Math.pow(-2*x+2,3)/2};
+// Visibilidad de un tramo [ini,fin] con entrada y salida suaves de 'fade' segundos.
+const tramo=(t,ini,fin,fade=.4)=>clamp((t-ini)/fade)*clamp((fin-t)/fade);
+
+// Cada escena: [elemento, inicio, fin]
+const ESCENAS=[['e1',0,3.2],['e2',3,6.2],['e3',6,9]];
+
+// render(t) debe dejar la página EXACTAMENTE como estaría en el segundo t, sin depender de
+// animaciones CSS, temporizadores ni del reloj. Así cada fotograma sale igual cada vez.
+function render(t){
+  for(const [id,ini,fin] of ESCENAS){
+    const el=document.getElementById(id), v=tramo(t,ini,fin);
+    el.style.opacity=v;
+    el.style.transform=`translateY(${(1-easeOut((t-ini)/.6))*40}px)`;
+  }
+}
+window.render=render;
+// Espera a imágenes y fuentes antes de capturar. Si usas imágenes, ponlas con <img> en el HTML.
+window.ready=Promise.all([...document.images].map(i=>i.complete?1:new Promise(r=>i.onload=r))).then(()=>document.fonts.ready);
+render(0);
+</script>
+</body>
+</html>
